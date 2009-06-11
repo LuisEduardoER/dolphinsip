@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Dolphins Integration Platform Compiler" default="all">
+
+	<!-- Load build properties -->
+	<property file="${basedir}/build.properties" />
+
+	<patternset id="compiler.resources">
+		<include name="**/?*.MF" />
+		<include name="**/?*.properties" />
+		<include name="**/?*.xml" />
+		<include name="**/?*.gif" />
+		<include name="**/?*.png" />
+		<include name="**/?*.jpeg" />
+		<include name="**/?*.jpg" />
+		<include name="**/?*.html" />
+		<include name="**/?*.dtd" />
+		<include name="**/?*.tld" />
+		<exclude name="**/build.properties" />
+	</patternset>
+
+	<path id="project.class.path">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="project.source.path">
+		<dirset dir="${basedir}">
+			<include name="meta" />
+			<include name="src" />
+		</dirset>
+	</path>
+
+	<target name="compile.javacc" depends="javacc.clean" description="compile javacc source">
+		<jjtree target="${javacc.jjtree.source}" outputdirectory="${javacc.output}" javacchome="${javacc.home}" static="${javacc.static}" />
+		<javacc target="${javacc.source}" outputdirectory="${javacc.output}" javacchome="${javacc.home}" static="${javacc.static}" />
+	</target>
+
+	<target name="compile" depends="compile.javacc" description="compile classes">
+		<mkdir dir="${output.dir}" />
+		<javac destdir="${output.dir}">
+			<classpath refid="project.class.path" />
+			<src refid="project.source.path" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="Build the distribution .jar file">
+		<jar jarfile="${jar.path}" basedir="${output.dir}" update="no" manifest="${meta.dir}/META-INF/MANIFEST.MF">
+			<include name="by/bsu/fami/etl/compiler/**/*.class" />
+		</jar>
+	</target>
+	
+	<target name="components.jar" depends="compile" description="Build the distribution .jar file">
+		<jar jarfile="${components.jar.path}" basedir="${output.dir}" update="no">
+			<include name="by/bsu/fami/etl/processing/**/*.class" />
+		</jar>
+	</target>
+
+	<target name="javacc.clean" description="cleanup all">
+		<delete dir="${javacc.output}">
+			<include name="**/*.java" />
+			<include name="**/*.jj" />
+		</delete>
+	</target>
+
+	<target name="clean" description="cleanup all">
+		<delete dir="${output.dir}/by" />
+		<delete file="${jar.path}" />
+	</target>
+
+	<target name="all" depends="clean, compile, jar, components.jar" description="build all" />
+
+</project>

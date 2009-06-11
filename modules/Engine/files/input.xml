@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<docs>
+		<field>
+			<name>xmlData</name>
+			<value>Test xml text 1</value>
+		</field>
+	</docs>
+	<docs>
+		<field>
+			<name>xmlData</name>
+			<value>Test xml text 2</value>
+		</field>
+	</docs>
+</root>

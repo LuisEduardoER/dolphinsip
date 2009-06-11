@@ -1,0 +1,22 @@
+// Checker
+rule MyChecker {
+	reader jdbcReader {
+		type = "JdbcReader";
+		ds = "jdbcDataSource";
+		map = "SELECT * FROM Test ORDER BY Id";
+		outputscheme = "None";
+		call = "simpleChecker";
+	}
+	checker simpleChecker {
+		type = "SimpleChecker";
+		condition = "";
+	}
+	datasource jdbcDataSource {
+		property DriverClass = "org.apache.derby.jdbc.ClientDriver";
+		property DatabaseUrl = "jdbc:derby://localhost:1527/db;";
+		property DatabaseUser = "";
+		property DatabasePassword = "";
+		property PoolSize = "5";
+		type = "JdbcDataSource";
+	}
+}

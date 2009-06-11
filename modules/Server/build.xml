@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Dolphins Integration Platform Server" default="all">
+
+	<!-- Load build properties -->
+	<property file="${basedir}/build.properties" />
+
+	<patternset id="compiler.resources">
+		<include name="**/?*.MF" />
+		<include name="**/?*.properties" />
+		<include name="**/?*.xml" />
+		<include name="**/?*.gif" />
+		<include name="**/?*.png" />
+		<include name="**/?*.jpeg" />
+		<include name="**/?*.jpg" />
+		<include name="**/?*.html" />
+		<include name="**/?*.dtd" />
+		<include name="**/?*.tld" />
+		<exclude name="**/build.properties" />
+	</patternset>
+
+	<path id="project.class.path">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="project.source.path">
+		<dirset dir="${basedir}">
+			<include name="meta" />
+			<include name="src" />
+		</dirset>
+	</path>
+
+	<target name="compile" description="compile classes">
+		<mkdir dir="${output.dir}" />
+		<javac destdir="${output.dir}">
+			<classpath refid="project.class.path" />
+			<src refid="project.source.path" />
+		</javac>
+	</target>
+
+	<target name="package" depends="compile" description="Build the distribution .war file">
+		<copy todir="${output.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.html"/>
+			</fileset>
+		</copy>
+		<war destfile="${war.path}" webxml="${webinf.dir}/web.xml">
+			<fileset dir="${webapp.dir}" />
+			<lib dir="${lib.dir}">
+				<exclude name="servlet-api*.jar" />
+				<exclude name="jsp*.jar" />
+				<exclude name="ant*.jar" />
+				<exclude name="core*.jar" />
+				<exclude name="jetty*.jar" />
+			</lib>
+			<classes dir="${output.dir}" />
+		</war>
+	</target>
+
+	<target name="clean" description="cleanup all">
+		<delete dir="${output.dir}/by" />
+		<delete file="${war.path}" />
+	</target>
+
+	<target name="all" depends="clean, compile, package" description="build all" />
+
+</project>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <document>
+        <Id>1</Id>
+        <Key>2</Key>
+    </document>
+    <document>
+        <Id>2</Id>
+        <Key>2</Key>
+    </document>
+    <document>
+        <Id>3</Id>
+        <Key>3</Key>
+    </document>
+    <document>
+        <Id>4</Id>
+        <Key>4</Key>
+    </document>
+    <document>
+        <Id>5</Id>
+        <Key>5</Key>
+    </document>
+</root>
