@@ -1,0 +1,25 @@
+0     INFO  [main] scheduler.Scheduler - Start init scheduler....
+16    INFO  [main] jmx.EngineClientJMX - Init engine client service:jmx:rmi:///jndi/rmi://:9999/jmxrmi
+485   INFO  [main] jmx.EngineClientJMX - Success init engine client service:jmx:rmi:///jndi/rmi://:9999/jmxrmi
+485   INFO  [main] scheduler.Scheduler - Success init engine
+485   INFO  [main] scheduler.Scheduler - Success init checker
+485   INFO  [main] scheduler.Scheduler - Success init scheduler
+563   INFO  [main] scheduler.Scheduler - Success init metadata
+563   INFO  [main] scheduler.Scheduler - Success init set of checkers
+563   WARN  [main] scheduler.Scheduler - Logger didn't initialize System property scheduler.log.Logger need initialisation for use Logger
+by.bsu.fami.etl.scheduler.log.LoggerException: System property scheduler.log.Logger need initialisation for use Logger
+	at by.bsu.fami.etl.scheduler.log.LoggerFactory.newLoggerInstance(LoggerFactory.java:33)
+	at by.bsu.fami.etl.scheduler.Scheduler.initScheduler(Scheduler.java:85)
+	at by.bsu.fami.etl.scheduler.ConsoleScheduler.main(ConsoleScheduler.java:59)
+578   INFO  [main] scheduler.Scheduler - Compile all rules....
+578   INFO  [main] jmx.EngineClientJMX - Compile all rules 
+610   INFO  [main] scheduler.Scheduler - [my.MyChecker, my.MyRule]
+610   INFO  [main] scheduler.Scheduler - Success compile all rules
+610   INFO  [Thread-2] scheduler.Scheduler - Start check .....
+610   INFO  [Thread-3] scheduler.Scheduler - Start executer .....
+610   INFO  [Thread-3] scheduler.Scheduler - Sleep 1000 ms before next run executer
+625   INFO  [Thread-2] checker.Checker - Start execute check rule my.MyChecker....
+1610  INFO  [Thread-3] scheduler.Scheduler - Start executer .....
+1610  INFO  [Thread-3] scheduler.Scheduler - Sleep 1000 ms before next run executer
+2610  INFO  [Thread-3] scheduler.Scheduler - Start executer .....
+2610  INFO  [Thread-3] scheduler.Scheduler - Sleep 1000 ms before next run executer

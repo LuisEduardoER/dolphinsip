@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Simple WebService" default="all">
+
+	<!-- Load build properties -->
+	<property file="${basedir}/build.properties" />
+
+	<patternset id="compiler.resources">
+		<include name="**/?*.MF" />
+		<include name="**/?*.properties" />
+		<include name="**/?*.xml" />
+		<include name="**/?*.gif" />
+		<include name="**/?*.png" />
+		<include name="**/?*.jpeg" />
+		<include name="**/?*.jpg" />
+		<include name="**/?*.html" />
+		<include name="**/?*.dtd" />
+		<include name="**/?*.tld" />
+		<exclude name="**/build.properties" />
+	</patternset>
+
+	<path id="project.class.path">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="project.source.path">
+		<dirset dir="${basedir}">
+			<include name="meta" />
+			<include name="src" />
+		</dirset>
+	</path>
+
+	<target name="compile" description="compile classes">
+		<mkdir dir="${output.dir}" />
+		<javac destdir="${output.dir}">
+			<classpath refid="project.class.path" />
+			<src refid="project.source.path" />
+		</javac>
+	</target>
+
+	<target name="package" depends="compile" description="Build the distribution .war file">
+		<mkdir dir="${dist.webinf.dir}" />
+		<mkdir dir="${dist.services.dir}" />
+		<mkdir dir="${dist.modules.dir}" />
+		<jar jarfile="${aar.path}" basedir="${output.dir}" update="no" manifest="${meta.dir}/META-INF/MANIFEST.MF">
+			<include name="by/bsu/fami/etl/example/webservice/**/*.class" />
+			<fileset dir="${etc.dir}">
+				<include name="META-INF/services.xml"/>
+			</fileset>
+		</jar>
+		<copy file="${etc.dir}/services.list" toDir="${dist.services.dir}" />
+		<copy file="${etc.dir}/conf/axis2.xml" toDir="${dist.conf.dir}" />
+		<copy todir="${dist.webinf.dir}">
+			<fileset dir="${webinf.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.modules.dir}">
+			<fileset dir="${modules.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<war destfile="${war.path}" webxml="${webinf.dir}/web.xml">
+			<lib dir="${lib.dir}">
+				<include name="**" />
+				<exclude name="**servlet**" />
+				<exclude name="ant*.jar" />
+				<exclude name="axis2-adb-codegen*.jar" />
+				<exclude name="axis2-codegen*.jar" />
+				<exclude name="jibx-bind*.jar" />
+			</lib>
+			<webinf dir="${dist.webinf.dir}" />
+			<fileset dir="${webapp.dir}">
+				<include name="**/axis2-web/**" />
+			</fileset>
+		</war>
+		<delete dir="${dist.webinf.dir}" />
+	</target>
+
+	<target name="clean" description="cleanup all">
+		<delete dir="${output.dir}/by" />
+		<delete>
+			<fileset dir="${dist.dir}" includes="**/*.*" />
+		</delete>
+	</target>
+
+	<target name="all" depends="clean, compile, package" description="build all" />
+
+</project>

@@ -1,0 +1,35 @@
+// Rule
+rule StatisticRule {
+	reader webServiceReader {
+		property DocumentElement = "//company";
+		property FieldElement = "./node()";
+		property FieldNameElement = "local-name(.)";
+		property FieldValueElement = "./text()";
+		type = "WebServiceReader";
+		ds = "webServiceDataSource";
+		map = "statistic";
+		outputscheme = "None";
+		call = "xmlWriter";
+	}
+	writer xmlWriter {
+		property BatchSize = "10";
+		type = "XmlWriter";
+		ds = "localFileWriteDataSource";
+		rootId = "root";
+		fieldId = "ID";
+		fieldKey = "ID,KEY";
+		outputscheme = "None";
+	}
+	datasource webServiceDataSource {
+		property WebServiceUrl = "http://localhost:8081/SimpleWebService/services/SimpleWebService";
+		property WebServiceNamespaceUrl = "http://webservice.example.etl.fami.bsu.by";
+		property WebServiceNamespace = "ns";
+		property WebServiceResultElement = "return";
+		type = "WebServiceDataSource";
+	}
+	datasource localFileWriteDataSource {
+		property FileName = "files/webservice.xml";
+		property FileAccess = "write";
+		type = "LocalFileDataSource";
+	}
+}

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0"  encoding="UTF-8"?>
+<Configure id="wac" class="org.mortbay.jetty.webapp.WebAppContext">
+	<Set name="contextPath">/</Set>
+	<Set name="war"><SystemProperty name="jetty.home" default="."/>/jetty/webapp/dip.server_0.0.1.war</Set>
+	<Set name="extractWAR">true</Set>
+	<Set name="copyWebDir">true</Set>
+	<Set name="defaultsDescriptor"><SystemProperty name="jetty.home" default="."/>/jetty/config/webdefault.xml</Set>
+</Configure>
+

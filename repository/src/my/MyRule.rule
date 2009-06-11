@@ -1,0 +1,62 @@
+// Rule
+rule MyRule {
+	reader jdbcReader {
+		property ParallelCount = "2";
+		type = "JdbcReader";
+		ds = "jdbcDataSource";
+		map = "SELECT * FROM Test ORDER BY Id";
+		outputscheme = "None";
+		call = "xmlReader";
+		field testF : int = "1";
+	}
+	reader xmlReader {
+		property RunMode = "lookup";
+		property FieldElement = "./field";
+		property FieldNameElement = "./name/text()";
+		property FieldValueElement = "./value/text()";
+		type = "XmlReader";
+		ds = "localFileReadDataSource";
+		map = "//docs";
+		outputscheme = "None";
+		call = "jdbcWriter";
+		call = "xmlWriter";
+	}
+	writer jdbcWriter {
+		property BatchSize = "5";
+		type = "JdbcWriter";
+		ds = "jdbcDataSource";
+		rootId = "TestXML";
+		fieldId = "ID";
+		fieldKey = "ID,KEYFIELD";
+		outputscheme = "None";
+	}
+	writer xmlWriter {
+		property BatchSize = "10";
+		type = "XmlWriter";
+		ds = "localFileWriteDataSource";
+		rootId = "root";
+		fieldId = "ID";
+		fieldKey = "ID,KEY";
+		outputscheme = "None";
+	}
+	datasource jdbcDataSource {
+		property DriverClass = "org.apache.derby.jdbc.ClientDriver";
+		property DatabaseUrl = "jdbc:derby://localhost:1527/db;";
+		property DatabaseUser = "";
+		property DatabasePassword = "";
+		property PoolSize = "5";
+		type = "JdbcDataSource";
+	}
+	datasource localFileReadDataSource {
+		property FileName = "files/input.xml";
+		property FileAccess = "read";
+		type = "LocalFileDataSource";
+	}
+	datasource localFileWriteDataSource {
+		property FileName = "files/output.xml";
+		property FileAccess = "write";
+		type = "LocalFileDataSource";
+	}
+	function fun1(int t) : void {
+	}
+}

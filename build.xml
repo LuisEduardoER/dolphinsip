@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Dolphins Integration Platform" default="all">
+
+	<property file="build.properties" />
+
+	<target name="all" depends="clean" description="build all modules">
+		<!-- Compiler module -->
+		<antcall target="build.module">
+			<param name="module.dir" value="${compiler.dir}" />
+			<param name="module.dist.dir" value="${compiler.dist.dir}" />
+			<param name="module.lib.dir" value="${compiler.lib.dir}" />
+		</antcall>
+		<!-- Engine module -->
+		<antcall target="build.module">
+			<param name="module.dir" value="${engine.dir}" />
+			<param name="module.dist.dir" value="${engine.dist.dir}" />
+			<param name="module.lib.dir" value="${engine.lib.dir}" />
+		</antcall>
+		<!-- Checker module -->
+		<antcall target="build.module">
+			<param name="module.dir" value="${checker.dir}" />
+			<param name="module.dist.dir" value="${checker.dist.dir}" />
+			<param name="module.lib.dir" value="${checker.lib.dir}" />
+		</antcall>
+		<!-- Scheduler module -->
+		<antcall target="build.module">
+			<param name="module.dir" value="${scheduler.dir}" />
+			<param name="module.dist.dir" value="${scheduler.dist.dir}" />
+			<param name="module.lib.dir" value="${scheduler.lib.dir}" />
+		</antcall>
+		<!-- Server module -->
+		<antcall target="build.module">
+			<param name="module.dir" value="${server.dir}" />
+			<param name="module.dist.dir" value="${server.dist.dir}" />
+			<param name="module.lib.dir" value="${server.lib.dir}" />
+		</antcall>
+		
+		<antcall target="deploy" />
+	</target>
+	
+	<target name="build.module" description="build dip module">
+		<ant dir="${module.dir}" />
+		<copy todir="${output}">
+			<fileset dir="${module.dist.dir}">
+				<include name="**/*.jar" />
+				<include name="**/*.war" />
+			</fileset>
+			<fileset dir="${module.lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="deploy" description="deploy webapp module">
+		<copy todir="${webapp}">
+			<fileset dir="${server.dist.dir}">
+				<include name="**/*.war" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="examples" description="build all examples">
+		<!-- Example WebService module -->
+		<antcall target="build.module">
+			<param name="module.dir" value="${webservice.dir}" />
+			<param name="module.dist.dir" value="${webservice.dist.dir}" />
+			<param name="module.lib.dir" value="${webservice.dist.dir}" />
+		</antcall>
+		
+		<antcall target="examples.deploy" />
+	</target>
+	
+	<target name="examples.deploy" description="deploy examples webapp modules">
+		<copy todir="${webapp}">
+			<fileset dir="${webservice.dist.dir}">
+				<include name="**/*.war" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="clean" description="clean all generated files">
+		<delete>
+			<fileset dir="${output}" includes="**/*.*"/>
+		</delete>
+		<delete>
+			<fileset dir="${webapp}" includes="**/*.*"/>
+		</delete>
+	</target>
+
+</project>
