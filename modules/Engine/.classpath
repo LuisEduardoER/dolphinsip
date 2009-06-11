@@ -6,6 +6,7 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Compiler"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="lib/felix.jar"/>
+	<classpathentry kind="lib" path="lib/org.apache.felix.log-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
