@@ -1,2 +1,9 @@
 Manifest-Version: 1.0
-Main-Class: by.bsu.fami.etl.engine.ConsoleEngine
+Built-By: pavel drobushevich
+Bundle-ManifestVersion: 2
+Bundle-Name: Dolphins Integration Platform Engine
+Bundle-Description: Dolphins Integration Platform Engine bundle to compile and start data integration rules.
+Bundle-SymbolicName: by.bsu.fami.etl.engine
+Bundle-Version: 0.0.1
+Bundle-Activator: by.bsu.fami.etl.engine.felix.EngineActivator
+Import-Package: org.osgi.framework; org.osgi.service.log; org.apache.log4j; org.apache.log4j.spi

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: ubuntu
+Build-Jdk: 1.6.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Log4j
+Bundle-SymbolicName: log4j
+Bundle-Version: 1.2.15
+Export-Package: org.apache.log4j; org.apache.log4j.spi
+
