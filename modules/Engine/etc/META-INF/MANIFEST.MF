@@ -3,7 +3,7 @@ Built-By: pavel drobushevich
 Bundle-ManifestVersion: 2
 Bundle-Name: Dolphins Integration Platform Engine
 Bundle-Description: Dolphins Integration Platform Engine bundle to compile and start data integration rules.
-Bundle-SymbolicName: by.bsu.fami.etl.engine
+Bundle-SymbolicName: com.dsc.dip.etl.engine
 Bundle-Version: 0.0.1
-Bundle-Activator: by.bsu.fami.etl.engine.felix.EngineActivator
-Import-Package: org.osgi.framework; org.apache.log4j; org.apache.log4j.spi
+Bundle-Activator: com.dsc.dip.etl.engine.felix.EngineActivator
+Import-Package: org.osgi.framework; org.apache.log4j; org.apache.log4j.spi; com.dsc.dip.etl.compiler

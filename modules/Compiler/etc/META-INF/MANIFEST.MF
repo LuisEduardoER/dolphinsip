@@ -1,2 +1,10 @@
 Manifest-Version: 1.0
-Main-Class: by.bsu.fami.etl.compiler.ConsoleCompiler
+Built-By: pavel drobushevich
+Bundle-ManifestVersion: 2
+Bundle-Name: Dolphins Integration Platform Compiler
+Bundle-Description: Dolphins Integration Platform Compiler bundle to compile data integration rules.
+Bundle-SymbolicName: com.dsc.dip.etl.compiler
+Bundle-Version: 0.0.1
+Export-Package: com.dsc.dip.etl.compiler
+Import-Package: org.apache.log4j; org.apache.log4j.spi
+

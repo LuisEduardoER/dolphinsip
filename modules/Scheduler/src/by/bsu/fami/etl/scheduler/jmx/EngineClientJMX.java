@@ -14,8 +14,9 @@ import javax.management.remote.JMXServiceURL;
 
 import org.apache.log4j.Logger;
 
-import by.bsu.fami.etl.engine.EngineException;
-import by.bsu.fami.etl.engine.IEngine;
+import com.dsc.dip.etl.engine.EngineException;
+import com.dsc.dip.etl.engine.IEngine;
+
 
 public class EngineClientJMX implements IEngine {
 

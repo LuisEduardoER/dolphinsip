@@ -44,7 +44,7 @@
 
 	<target name="jar" depends="compile" description="Build the distribution .jar file">
 		<jar jarfile="${jar.path}" basedir="${output.dir}" update="no" manifest="${meta.dir}/META-INF/MANIFEST.MF">
-			<include name="by/bsu/fami/etl/engine/**/*.class" />
+			<include name="com/dsc/dip/etl/engine/**/*.class" />
 			<fileset dir="${basedir}">
 				<include name="log4j.properties"/>
 			</fileset>
@@ -52,7 +52,7 @@
 	</target>
 	
 	<target name="clean" description="cleanup all">
-		<delete dir="${output.dir}/by" />
+		<delete dir="${output.dir}/com" />
 		<delete file="${jar.path}" />
 	</target>
 
