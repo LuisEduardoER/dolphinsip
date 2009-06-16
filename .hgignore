@@ -4,3 +4,4 @@ glob:modules/Server/bin/*
 glob:utils/*
 glob:modules/Compiler/dist/*
 glob:modules/Engine/dist/*
+glob:dist/*
