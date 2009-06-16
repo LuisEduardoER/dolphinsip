@@ -9,7 +9,8 @@ import java.net.URLClassLoader;
 
 import org.apache.log4j.Logger;
 
-import by.bsu.fami.etl.processing.CheckRule;
+import com.dsc.dip.etl.processing.CheckRule;
+
 
 public class Checker {
 

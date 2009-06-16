@@ -96,9 +96,14 @@
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
+
+		<!-- Copy core modules -->
 		<copy todir="${engine.app.build.dir.core}">
 			<fileset dir="${engine.app.external}/log4j">
 				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${compiler.dist.dir}">
+				<include name="**/*.jar" />
 			</fileset>
 			<fileset dir="${engine.dist.dir}">
 				<include name="**/*.jar" />

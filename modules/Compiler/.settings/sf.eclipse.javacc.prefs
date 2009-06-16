@@ -1,8 +1,8 @@
-#Wed May 13 12:13:46 EEST 2009
+#Tue Jun 16 20:08:10 EEST 2009
 CLEAR_CONSOLE=true
-JAVACC_OPTIONS=-STATIC\=false -JDK_VERSION\=1.6 -OUTPUT_DIRECTORY\="D\:\\Pavel Drabushevich\\TMP\\DIP\\modules\\Compiler\\src\\by\\bsu\\fami\\etl\\compiler\\jcc"
+JAVACC_OPTIONS=-STATIC\=false -JDK_VERSION\=1.6 -OUTPUT_DIRECTORY\="D\:\\Pavel Drabushevich\\TMP\\DIP-hg\\modules\\Compiler\\src\\com\\dsc\\dip\\etl\\compiler\\jcc"
 JJDOC_OPTIONS=
-JJTREE_OPTIONS=-STATIC\=false -JDK_VERSION\=1.6 -OUTPUT_DIRECTORY\="D\:\\Pavel Drabushevich\\TMP\\DIP\\modules\\Compiler\\src\\by\\bsu\\fami\\etl\\compiler\\jcc" -JJTREE_OUTPUT_DIRECTORY\="D\:\\Pavel Drabushevich\\TMP\\DIP\\modules\\Compiler\\src\\by\\bsu\\fami\\etl\\compiler\\jcc"
+JJTREE_OPTIONS=-STATIC\=false -JDK_VERSION\=1.6 -OUTPUT_DIRECTORY\="D\:\\Pavel Drabushevich\\TMP\\DIP-hg\\modules\\Compiler\\src\\com\\dsc\\dip\\etl\\compiler\\jcc" -JJTREE_OUTPUT_DIRECTORY\="D\:\\Pavel Drabushevich\\TMP\\DIP-hg\\modules\\Compiler\\src\\com\\dsc\\dip\\etl\\compiler\\jcc"
 JJ_NATURE=true
 JTB_OPTIONS=
 RUNTIME_JAR=C\:\\Program Files\\Java\\javacc\\bin\\lib\\javacc.jar
