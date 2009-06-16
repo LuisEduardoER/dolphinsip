@@ -34,10 +34,10 @@
 			<param name="module.dist.dir" value="${server.dist.dir}" />
 			<param name="module.lib.dir" value="${server.lib.dir}" />
 		</antcall>
-		
+
 		<antcall target="deploy" />
 	</target>
-	
+
 	<target name="build.module" description="build dip module">
 		<ant dir="${module.dir}" />
 		<copy todir="${output}">
@@ -50,7 +50,7 @@
 			</fileset>
 		</copy>
 	</target>
-	
+
 	<target name="deploy" description="deploy webapp module">
 		<copy todir="${webapp}">
 			<fileset dir="${server.dist.dir}">
@@ -58,7 +58,7 @@
 			</fileset>
 		</copy>
 	</target>
-	
+
 	<target name="examples" description="build all examples">
 		<!-- Example WebService module -->
 		<antcall target="build.module">
@@ -66,10 +66,10 @@
 			<param name="module.dist.dir" value="${webservice.dist.dir}" />
 			<param name="module.lib.dir" value="${webservice.dist.dir}" />
 		</antcall>
-		
+
 		<antcall target="examples.deploy" />
 	</target>
-	
+
 	<target name="examples.deploy" description="deploy examples webapp modules">
 		<copy todir="${webapp}">
 			<fileset dir="${webservice.dist.dir}">
@@ -77,14 +77,43 @@
 			</fileset>
 		</copy>
 	</target>
-	
+
+	<target name="build.engine" description="create engine dist">
+		<!-- Clean -->
+		<delete dir="${engine.app.build.dir}" />
+		<!-- Build all Engine app modules -->
+		<ant dir="${compiler.dir}" />
+		<ant dir="${engine.dir}" />
+		<ant dir="${engine.app.dir}" />
+
+		<!--Create base app -->
+		<mkdir dir="${engine.app.build.dir}" />
+		<copy todir="${engine.app.build.dir}">
+			<fileset dir="${engine.app.felix}">
+				<include name="**/*" />
+			</fileset>
+			<fileset dir="${engine.app.dist.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<copy todir="${engine.app.build.dir.core}">
+			<fileset dir="${engine.app.external}/log4j">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${engine.dist.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
 	<target name="clean" description="clean all generated files">
-		<delete>
-			<fileset dir="${output}" includes="**/*.*"/>
+		<delete includeemptydirs="true">
+			<fileset dir="${output}" includes="**/*.*" />
 		</delete>
 		<delete>
-			<fileset dir="${webapp}" includes="**/*.*"/>
+			<fileset dir="${webapp}" includes="**/*.*" />
 		</delete>
 	</target>
+
 
 </project>
