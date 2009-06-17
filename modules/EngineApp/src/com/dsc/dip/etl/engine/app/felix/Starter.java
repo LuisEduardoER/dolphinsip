@@ -47,6 +47,9 @@ public class Starter implements Runnable {
 				felix.start();
 
 				BundleContext context = felix.getBundleContext();
+				
+				// Config base properties
+				context
 
 				// init start level service
 				ServiceReference ref = context
