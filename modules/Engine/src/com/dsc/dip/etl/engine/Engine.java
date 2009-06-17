@@ -36,11 +36,11 @@ public class Engine {
 
 	private final static Logger LOGGER = Logger.getLogger(Engine.class);
 
-	protected final static String REPOSITORY_BIN = "repository.bin";
+	public final static String REPOSITORY_BIN = "repository.bin";
 
-	protected final static String REPOSITORY_SRC = "repository.src";
+	public final static String REPOSITORY_SRC = "repository.src";
 
-	protected final static String TYPE_ALIAS_PREFIX = "compiler.component.type";
+	public final static String TYPE_ALIAS_PREFIX = "compiler.component.type";
 
 	protected String repositoryPath;
 
