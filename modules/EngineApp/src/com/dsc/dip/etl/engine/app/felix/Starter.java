@@ -13,7 +13,6 @@ import org.osgi.service.startlevel.StartLevel;
 
 import com.dsc.dip.etl.engine.app.felix.utils.Module;
 
-
 public class Starter implements Runnable {
 
 	protected Felix felix;
@@ -33,8 +32,7 @@ public class Starter implements Runnable {
 				new Module("org.apache.felix.shell", "1.2.0", "framework", 1),
 				new Module("log4j", "1.2.15", "core", 1),
 				new Module("com.dsc.dip.etl.compiler", "0.0.1", "core", 2),
-				new Module("com.dsc.dip.etl.engine", "0.0.1", "core", 2) 
-				};
+				new Module("com.dsc.dip.etl.engine", "0.0.1", "core", 2) };
 	}
 
 	public void start() {
@@ -65,6 +63,8 @@ public class Starter implements Runnable {
 				for (Module module : modules) {
 					startModule(module);
 				}
+				
+				startLevel.setStartLevel(4);
 
 				showFelixModulesInfo();
 
@@ -99,14 +99,20 @@ public class Starter implements Runnable {
 				BundleContext context = felix.getBundleContext();
 				Bundle bundle = context.installBundle(module.getName(),
 						new FileInputStream(module.getPath()));
-				System.out.println("Success install '" + module.getName()
-						+ "' module");
-				if (startLevel != null) {
-					startLevel.setBundleStartLevel(bundle, module.getLevel());
+				if (bundle != null) {
+					System.out.println("Success install '" + module.getName()
+							+ "' module");
+					if (startLevel != null) {
+						startLevel.setBundleStartLevel(bundle, module
+								.getLevel());
+					}
+					bundle.start();
+					System.out.println("Success start '" + module.getName()
+							+ "' module");
+				} else {
+					System.err.println("Couldn't install '" + module.getName()
+							+ "' module");
 				}
-				bundle.start();
-				System.out.println("Success start '" + module.getName()
-						+ "' module");
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
