@@ -84,6 +84,7 @@
 		<!-- Build all Engine app modules -->
 		<ant dir="${compiler.dir}" />
 		<ant dir="${engine.dir}" />
+		<ant dir="${engine.shell.dir}" />
 		<ant dir="${engine.app.dir}" />
 
 		<!--Create base app -->
@@ -106,6 +107,9 @@
 				<include name="**/*.jar" />
 			</fileset>
 			<fileset dir="${engine.dist.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${engine.shell.dist.dir}">
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>

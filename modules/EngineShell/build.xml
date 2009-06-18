@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Dolphins Integration Platform Engine Shell" default="all">
+
+	<!-- Load build properties -->
+	<property file="${basedir}/build.properties" />
+
+	<patternset id="compiler.resources">
+		<include name="**/?*.MF" />
+		<include name="**/?*.properties" />
+		<include name="**/?*.xml" />
+		<include name="**/?*.gif" />
+		<include name="**/?*.png" />
+		<include name="**/?*.jpeg" />
+		<include name="**/?*.jpg" />
+		<include name="**/?*.html" />
+		<include name="**/?*.dtd" />
+		<include name="**/?*.tld" />
+		<exclude name="**/build.properties" />
+	</patternset>
+
+	<path id="project.class.path">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${engine.dist.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="project.source.path">
+		<dirset dir="${basedir}">
+			<include name="meta" />
+			<include name="src" />
+		</dirset>
+	</path>
+
+	<target name="compile" description="compile classes">
+		<mkdir dir="${output.dir}" />
+		<javac destdir="${output.dir}">
+			<classpath refid="project.class.path" />
+			<src refid="project.source.path" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="Build the distribution .jar file">
+		<jar jarfile="${jar.path}" basedir="${output.dir}" update="no" manifest="${meta.dir}/META-INF/MANIFEST.MF">
+			<include name="com/dsc/dip/etl/engine/felix/shell/**/*.class" />
+		</jar>
+	</target>
+
+	<target name="clean" description="cleanup all">
+		<delete dir="${output.dir}/com" />
+		<delete file="${jar.path}" />
+	</target>
+
+	<target name="all" depends="clean, compile, jar" description="build all" />
+
+</project>
