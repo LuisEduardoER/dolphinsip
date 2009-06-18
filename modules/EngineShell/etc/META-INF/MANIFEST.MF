@@ -6,6 +6,6 @@ Bundle-Description: Shell access to Dolphins Integration Platform Engine.
 Bundle-SymbolicName: com.dsc.dip.etl.engine.shell
 Bundle-Version: 0.0.1
 Bundle-Activator: com.dsc.dip.etl.engine.felix.shell.ShellActivator
-Import-Package: org.osgi.framework,  com.dsc.dip.etl.engine.felix
+Import-Package: org.osgi.framework,  com.dsc.dip.etl.engine; com.dsc.dip.etl.engine.felix
 Export-Package: com.dsc.dip.etl.engine.felix.shell
 

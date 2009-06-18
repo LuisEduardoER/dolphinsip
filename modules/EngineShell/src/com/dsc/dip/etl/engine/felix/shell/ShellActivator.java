@@ -8,6 +8,7 @@ import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
 
 import com.dsc.dip.etl.engine.felix.EngineService;
+import com.dsc.dip.etl.engine.felix.shell.impl.CompileCommand;
 import com.dsc.dip.etl.engine.felix.shell.impl.ShellServiceImpl;
 
 public class ShellActivator implements BundleActivator {
@@ -25,6 +26,7 @@ public class ShellActivator implements BundleActivator {
     protected ServiceReference shellRef;
 
     public void start(BundleContext context) throws Exception {
+	this.context = context;
 	shellRef = context.registerService(ShellService.class.getName(),
 		shell = new ShellServiceImpl(), null).getReference();
 
@@ -99,9 +101,9 @@ public class ShellActivator implements BundleActivator {
 	// been registered (i.e., we didn't see their service events).
 	initializeCommands();
 
-	// Register "bundlelevel" command service.
-	// context.registerService(Command.class.getName(),
-	// new BundleLevelCommandImpl(context), null);
+	// Register "compile" command service.
+	context.registerService(Command.class.getName(), new CompileCommand(
+		engine), null);
 
 	thread = new Thread(runnable = new ShellRunnable(shell, this),
 		"Engine Shell");
