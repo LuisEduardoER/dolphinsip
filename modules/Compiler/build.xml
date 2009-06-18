@@ -49,6 +49,10 @@
 			<include name="com/dsc/dip/etl/compiler/**/*.class" />
 			<!-- Temporary hack!!!!! -->
 			<include name="com/dsc/dip/etl/processing/**/*.class" />
+			<fileset dir="${basedir}">
+				<include name="lib/commons-lang-2.3.jar" />
+				<include name="lib/bcel-5.2.jar" />
+			</fileset>
 		</jar>
 	</target>
 

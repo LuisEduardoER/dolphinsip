@@ -6,4 +6,5 @@ Bundle-Description: Dolphins Integration Platform Engine bundle to compile and s
 Bundle-SymbolicName: com.dsc.dip.etl.engine
 Bundle-Version: 0.0.1
 Bundle-Activator: com.dsc.dip.etl.engine.felix.EngineActivator
+Bundle-Classpath: .,/lib/commons-lang-2.3.jar
 Import-Package: org.osgi.framework; org.apache.log4j; org.apache.log4j.spi; com.dsc.dip.etl.compiler
