@@ -94,7 +94,7 @@ public class ShellServiceImpl implements ShellService {
 
 	public synchronized void addCommand(BundleContext context,
 			ServiceReference ref) {
-		if (ref != null) {
+		if (ref != null && context != null) {
 			Object cmdObj = context.getService(ref);
 			if (cmdObj != null && cmdObj instanceof Command) {
 				Command command = (Command) cmdObj;
