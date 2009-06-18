@@ -5,6 +5,7 @@ Bundle-Name: Dolphins Integration Platform Compiler
 Bundle-Description: Dolphins Integration Platform Compiler bundle to compile data integration rules.
 Bundle-SymbolicName: com.dsc.dip.etl.compiler
 Bundle-Version: 0.0.1
+Bundle-Classpath: .,/lib/commons-lang-2.3.jar,/lib/bcel-5.2.jar
 Export-Package: com.dsc.dip.etl.compiler
 Import-Package: org.apache.log4j; org.apache.log4j.spi
 

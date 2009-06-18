@@ -46,11 +46,14 @@
 		<jar jarfile="${jar.path}" basedir="${output.dir}" update="no" manifest="${meta.dir}/META-INF/MANIFEST.MF">
 			<include name="com/dsc/dip/etl/engine/**/*.class" />
 			<fileset dir="${basedir}">
-				<include name="log4j.properties"/>
+				<include name="log4j.properties" />
+			</fileset>
+			<fileset dir="${basedir}">
+				<include name="lib/commons-lang-2.3.jar" />
 			</fileset>
 		</jar>
 	</target>
-	
+
 	<target name="clean" description="cleanup all">
 		<delete dir="${output.dir}/com" />
 		<delete file="${jar.path}" />

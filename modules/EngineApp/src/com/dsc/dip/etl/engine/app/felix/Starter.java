@@ -48,9 +48,6 @@ public class Starter implements Runnable {
 
 				BundleContext context = felix.getBundleContext();
 				
-				// Config base properties
-				context
-
 				// init start level service
 				ServiceReference ref = context
 						.getServiceReference(StartLevel.class.getName());
@@ -63,11 +60,10 @@ public class Starter implements Runnable {
 				}
 
 				// Init modules
+				startLevel.setStartLevel(4);
 				for (Module module : modules) {
 					startModule(module);
 				}
-				
-				startLevel.setStartLevel(4);
 
 				showFelixModulesInfo();
 
