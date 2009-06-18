@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: pavel drobushevich
+Bundle-ManifestVersion: 2
+Bundle-Name: Dolphins Integration Platform Engine Shell
+Bundle-Description: Shell access to Dolphins Integration Platform Engine.
+Bundle-SymbolicName: com.dsc.dip.etl.engine.shell
+Bundle-Version: 0.0.1
+Bundle-Activator: com.dsc.dip.etl.engine.felix.shell.ShellActivator
+Import-Package: org.osgi.framework,  com.dsc.dip.etl.engine.felix
+Export-Package: com.dsc.dip.etl.engine.felix.shell
+
