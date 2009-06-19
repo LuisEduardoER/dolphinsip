@@ -133,9 +133,18 @@
 				<fileset dir="${compiler.lib.dir}">
 					<include name="*.jar" />
 				</fileset>
-				<pathelement location="${classes.dir}" />
+				<fileset dir="${engine.lib.dir}">
+					<include name="*.jar" />
+				</fileset>
+				<pathelement location="${compiler.classes.dir}" />
+				<pathelement location="${engine.classes.dir}" />
+				<pathelement location="${engine.shell.classes.dir}" />
+				<pathelement location="${engine.app.classes.dir}" />
 			</classpath>
-			<fileset dir="${source.dir}" includes="**/*.java" />
+			<fileset dir="${compiler.source.dir}" includes="**/*.java" excludes="**/jcc/*.java" />
+			<fileset dir="${engine.source.dir}" includes="**/*.java" />
+			<fileset dir="${engine.shell.source.dir}" includes="**/*.java" />
+			<fileset dir="${engine.app.source.dir}" includes="**/*.java" />
 			<formatter type="xml" toFile="${checkstyle.xml.reports.dir}/checkstyle_errors.xml" />
 		</checkstyle>
 		<xslt destdir="${checkstyle.html.reports.dir}" basedir="${checkstyle.xml.reports.dir}" includes="checkstyle_errors.xml" style="${checkstyle.home}/contrib/checkstyle-noframes-sorted.xsl" classpathref="checkstyle.path" />

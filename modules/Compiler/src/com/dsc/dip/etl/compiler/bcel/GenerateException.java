@@ -1,23 +1,50 @@
 package com.dsc.dip.etl.compiler.bcel;
 
-public class GenerateException extends Exception{
+/**
+ * Error generate java byte-code by parsing syntax tree.
+ * @author <a href="mailto:p.drobushevich@gmail.com">Pavel Drobushevich</a>
+ */
+public class GenerateException extends Exception {
 
-	private static final long serialVersionUID = -28825574197846722L;
+    /**
+     * serial version uid for serialisation.
+     */
+    private static final long serialVersionUID = -28825574197846722L;
 
-	public GenerateException() {
-		super();
-	}
+    /**
+     * Empty constructor.
+     */
+    public GenerateException() {
+        super();
+    }
 
-	public GenerateException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-	}
+    /**
+     * Constructor with message and inner exception.
+     * @param message
+     *            - error message
+     * @param cause
+     *            - inner exception
+     */
+    public GenerateException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 
-	public GenerateException(String arg0) {
-		super(arg0);
-	}
+    /**
+     * Constructor with error message.
+     * @param message
+     *            - error message
+     */
+    public GenerateException(final String message) {
+        super(message);
+    }
 
-	public GenerateException(Throwable arg0) {
-		super(arg0);
-	}
+    /**
+     * Constructor with inner exception.
+     * @param cause
+     *            - inner exception
+     */
+    public GenerateException(final Throwable cause) {
+        super(cause);
+    }
 
 }
