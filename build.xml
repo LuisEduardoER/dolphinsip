@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Dolphins Integration Platform" default="all">
 
-	<property file="build.properties" />
+	<property file="${basedir}/build.properties" />
+	<property file="${basedir}/reports.properties" />
+
+	<taskdef resource="checkstyletask.properties" classpath="${checkstyle.home}/checkstyle-all-5.0.jar" />
 
 	<target name="all" depends="clean" description="build all modules">
 		<!-- Compiler module -->
@@ -115,6 +118,29 @@
 		</copy>
 	</target>
 
+
+	<path id="checkstyle.path">
+		<fileset dir="${checkstyle.home}" includes="*.jar" />
+	</path>
+
+	<target name="run.checkstyle">
+		<delete dir="${checkstyle.xml.reports.dir}" failonerror="false" />
+		<delete dir="${checkstyle.html.reports.dir}" failonerror="false" />
+		<mkdir dir="${checkstyle.xml.reports.dir}" />
+		<mkdir dir="${checkstyle.html.reports.dir}" />
+		<checkstyle config="${checkstyle.config}" failonviolation="false">
+			<classpath>
+				<fileset dir="${compiler.lib.dir}">
+					<include name="*.jar" />
+				</fileset>
+				<pathelement location="${classes.dir}" />
+			</classpath>
+			<fileset dir="${source.dir}" includes="**/*.java" />
+			<formatter type="xml" toFile="${checkstyle.xml.reports.dir}/checkstyle_errors.xml" />
+		</checkstyle>
+		<xslt destdir="${checkstyle.html.reports.dir}" basedir="${checkstyle.xml.reports.dir}" includes="checkstyle_errors.xml" style="${checkstyle.home}/contrib/checkstyle-noframes-sorted.xsl" classpathref="checkstyle.path" />
+	</target>
+
 	<target name="clean" description="clean all generated files">
 		<delete includeemptydirs="true">
 			<fileset dir="${output}" includes="**/*.*" />
@@ -123,6 +149,5 @@
 			<fileset dir="${webapp}" includes="**/*.*" />
 		</delete>
 	</target>
-
 
 </project>
