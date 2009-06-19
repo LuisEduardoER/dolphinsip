@@ -1,22 +1,49 @@
 package com.dsc.dip.etl.compiler;
 
-public class CompilerException extends Exception{
+/**
+ * Exception provide infomation about.
+ * @author <a href="mailto:p.drobushevich@gmail.com">Pavel Drobushevich</a>
+ */
+public class CompilerException extends Exception {
 
-	private static final long serialVersionUID = 3988134782684360576L;
+    /**
+     * serial version uid for serialisation.
+     */
+    private static final long serialVersionUID = 3988134782684360576L;
 
-	public CompilerException() {
-	}
+    /**
+     * Empty constructor.
+     */
+    public CompilerException() {
+    }
 
-	public CompilerException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * Constructor with message and inner exception.
+     * @param message
+     *            - error message
+     * @param cause
+     *            - inner exception
+     */
+    public CompilerException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 
-	public CompilerException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor with error message.
+     * @param message
+     *            - error message
+     */
+    public CompilerException(final String message) {
+        super(message);
+    }
 
-	public CompilerException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Constructor with inner exception.
+     * @param cause
+     *            - inner exception
+     */
+    public CompilerException(final Throwable cause) {
+        super(cause);
+    }
 
 }
